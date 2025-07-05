@@ -5,12 +5,12 @@
 typedef struct ring_queue
 {
     int value[MAX_QUEUE_LEN];
-    int front; // Points to the index of the element to dequeue
-    int rear;  // Points to the index where new element will be enqueued
-    int count; // Number of elements currently in the queue
+    int front;
+    int rear;  
+    int count; 
 } rq_t;
 
-// Initialize the queue
+
 int rq_init(rq_t *q)
 {
     if (q == NULL)
@@ -21,14 +21,14 @@ int rq_init(rq_t *q)
     return 0;
 }
 
-// Enqueue operation
+
 int rq_enqueue(rq_t *q, int val)
 {
     if (q == NULL)
         return -1;
     if (q->count == MAX_QUEUE_LEN)
     {
-        return -1; // Queue is full
+        return -1; 
     }
     q->value[q->rear] = val;
     q->rear = (q->rear + 1) % MAX_QUEUE_LEN;
@@ -36,14 +36,14 @@ int rq_enqueue(rq_t *q, int val)
     return 0;
 }
 
-// Dequeue operation
+
 int rq_dequeue(rq_t *q, int *val)
 {
     if (q == NULL || val == NULL)
         return -1;
     if (q->count == 0)
     {
-        return -1; // Queue is empty
+        return -1;
     }
     *val = q->value[q->front];
     q->front = (q->front + 1) % MAX_QUEUE_LEN;
@@ -51,7 +51,7 @@ int rq_dequeue(rq_t *q, int *val)
     return 0;
 }
 
-// Print the current queue
+
 void print_queue(rq_t *q)
 {
     if (q->count == 0)
@@ -69,7 +69,7 @@ void print_queue(rq_t *q)
     printf("\nFront at: %d, Rear at: %d\n", q->front, q->rear);
 }
 
-// Main function with menu
+
 int main()
 {
     rq_t q;
